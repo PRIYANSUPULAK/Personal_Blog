@@ -15,8 +15,9 @@
         {{form.as_p}}
 
         <input type="submit" class='btn btn-primary' value="Login" />
-        {{# next keyword automatically sends the user to dashboard after login. Django default}}
-        {{#here form is by default form login views.}}
+        {{ # next keyword automatically sends the user to the page user was tring to access}}
+        {{ #  before login. Django default}}
+        {{#here form is by default form loginView.}}
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
   </div>
