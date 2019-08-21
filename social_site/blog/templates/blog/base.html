@@ -24,8 +24,8 @@
   <nav class="navbar navbar-expand-lg bg-light techfont">
     <div class="container">
       <div class="navbar-nav align-items-center">
-        {{# Here we are not using app_name while linking beacause templates are created}}
-          {{# inside the app only}}
+        {# Here we are not using app_name while linking beacause templates are created #}
+          {# inside the app only#}
         <a class="navbar-brand bigbrand" href="{% url 'post_list' %}">My Tech blog</a>
         <a class="nav-item nav-link" href="{% url 'about' %}">About</a>
         <a class="nav-item nav-link" href="https://www.github.com">Github</a>
@@ -38,9 +38,10 @@
           <a class="nav-item nav-link" href="{% url 'logout' %}">Log out</a>
           <a >Welcome: {{ user.username }}</a>
         {% else %}
-          <a class="nav-item nav-link" href="{% url 'login' %}" aria-label="Login">
-            <span class="fa fa-user" aria-hidden="true"></span></a>
-        {% endif %}
+        <a class="nav-item nav-link" href="{% url 'login' %}" aria-label="Login">
+          <span class="fa fa-user" aria-hidden="true">Login</span></a>
+
+            {% endif %}
       </div>
     </div>
   </nav>

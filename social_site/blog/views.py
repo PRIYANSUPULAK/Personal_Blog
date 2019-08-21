@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from blog.models import Post, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.utils import timezone
+
 from blog.forms import PostForm, CommentForm
 from django.views.generic import (TemplateView,ListView,
                                     DetailView, CreateView,
@@ -14,11 +17,11 @@ class PostListView(ListView):
     model = "Post"
 
     def get_queryset(self):
-        return Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date'))
+        return Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
         # Equivalent to select * from posts ordered_by published_date in descending order
 
 class PostDetailView(DetailView):
-    model = "Post"
+    model = Post
 
 class CreatePostView(CreateView, LoginRequiredMixin):
     login_url = '/login/'
@@ -44,7 +47,7 @@ class DraftListView(LoginRequiredMixin, ListView):
     model = Post
 
     def get_queryset(self):
-        return Post.objects.filter(published_date_isnull = True).order_by('created_date')
+        return Post.objects.filter(published_date__isnull = True).order_by('created_date')
 
 
 
